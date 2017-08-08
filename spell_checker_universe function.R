@@ -2,7 +2,7 @@
 # (adist(c("kit", "sit","kitten"), "kitten"))
 
 
-correct <- function(word, taxanomies_dat) {
+correct <- function(word, taxanomies_dat, perc_char_diff) {
   
   #convert sorted_words to a data frame by using assigne
   sorted_words = as.character(get(taxanomies_dat))
@@ -11,7 +11,7 @@ correct <- function(word, taxanomies_dat) {
   edit_dist <- adist(sorted_words,word)
   # Calculate the minimum edit distance to find a word that exists in big.txt 
   # with a limit of 20% of the length of word
-  min_edit_dist <- min(edit_dist, nchar(word)*0.20)
+  min_edit_dist <- min(edit_dist, nchar(word)*perc_char_diff)
   # Generate a vector with all words with this minimum edit distance.
   # Since sorted_words is ordered from most common to least common, the resulting
   # vector will have the most common / probable match first.
